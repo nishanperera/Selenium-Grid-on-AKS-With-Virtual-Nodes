@@ -1,0 +1,44 @@
+# kubectl apply -f hub-AKS-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-hub
+spec:
+  selector:
+    matchLabels:
+      app: selenium-hub
+  template:
+    metadata:
+      labels:
+        app: selenium-hub
+    spec:
+      containers:
+      - name: selenium-hub
+        image: selenium/hub:3.141
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: ".5"
+        ports:
+          - containerPort: 4444
+        livenessProbe:
+          httpGet:
+            path: /wd/hub/status
+            port: 4444
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /grid/console
+            port: 4444
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+      nodeSelector:
+        kubernetes.io/role: agent
+        beta.kubernetes.io/os: linux
+        type: virtual-kubelet
+      tolerations:
+          - key: virtual-kubelet.io/provider
+            operator: Exists
+          - key: azure.com/aci
+            effect: NoSchedule
