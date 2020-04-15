@@ -49,3 +49,5 @@ kubectl autoscale deployment chrome-node-rc --cpu-percent=40 --min=1 --max=5
 kubectl get hpa -w
 ````
 
+![](images/hpa.png)
+
