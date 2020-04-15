@@ -1,14 +1,13 @@
 ## Selenium Grid on Azure Kubernetes Services (AKS) with Horizontal Pod Autoscaler on virtual nodes (ACI).
 
-This sample code, setup a Selenium Grid and Nodes on AKS and ACI with autoscaling. Instead of running your browser nodes on AKS nodes, pods use virtual nodes (ACI) to spin up selenium hub nodes(Browsers). 
-
-With AKS virtual nodes, you have fast provisioning of selenium browser nodes pods, and only pay per second for their execution time. Sample scripts spin up new browser nodes depend on CPU usage using Kubernetes Horizontal Pod Autoscaler.
+This project, setup a Selenium Grid and Nodes (browsers) on AKS and Azure Container Instances (ACI) with autoscaling. 
+With AKS virtual node, you have fast provisioning of selenium browser nodes pods and only pay per second, for their execution time. Horizontal Pod Autoscaler spin up new browser nodes depend on CPU usage.
 
 ![](images/AKS-Virtual-Node.jpg)
 
 ## Prerequisites
 
-Setup AKS with virtual nodes (https://docs.microsoft.com/en-us/azure/aks/virtual-nodes-portal)
+Setup AKS with a virtual node (https://docs.microsoft.com/en-us/azure/aks/virtual-nodes-portal)
 
 ## Setup Selenium hub
 
