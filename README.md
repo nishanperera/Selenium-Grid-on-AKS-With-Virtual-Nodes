@@ -4,6 +4,8 @@ This sample code, setup a Selenium Grid and Nodes on AKS and ACI with autoscalin
 
 With AKS virtual nodes, you have fast provisioning of selenium browser nodes pods, and only pay per second for their execution time. Sample scripts spin up new browser nodes depend on CPU usage using Kubernetes Horizontal Pod Autoscaler.
 
+![](images/AKS-Virtual-Node.jpg)
+
 ## Prerequisites
 
 Setup AKS with virtual nodes (https://docs.microsoft.com/en-us/azure/aks/virtual-nodes-portal)
@@ -14,19 +16,24 @@ Setup AKS with virtual nodes (https://docs.microsoft.com/en-us/azure/aks/virtual
 kubectl apply -f hub-AKS-deployment.yaml
 ```
 
-Create service to access Selenum hub externally
+Create a service to access Selenum hub externally
 
 ```
 kubectl apply -f hub-AKS-service.yaml
 ```
 
-## Create Chrome node 
+Run following to see service IP
 
 ```
-kubectl apply -f chrome-node-deployment.yaml
+kubectl get service selenium-svc
 ```
 
+![](images/service.png)
+
+
 ## Create Chrome node 
+
+Please update HUB_HOST before running yaml file.
 
 ```
 kubectl apply -f chrome-node-AKS-deployment.yaml
